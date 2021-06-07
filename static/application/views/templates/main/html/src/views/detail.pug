@@ -1,0 +1,139 @@
+extends layout
+
+block content
+
+  .page.detail-on
+    header.header
+      .title <b>Smart</b> Home
+      .controls
+        button.controls__button.all-shine ВЫКЛЮЧИТЬ ВЕСЬ СВЕТ
+        button.controls__button.all-elec ВЫКЛЮЧИТЬ ВСЕ ЭЛЕКТРИЧЕСТВО
+        button.controls__button.all-water ПЕРЕКРЫТЬ ВСЮ ВОДУ
+
+
+    main.main
+      .desc Выберите необходимую комнату для управления
+
+      .area
+
+        .room
+          .room-name Ванная
+          .room-functions
+            .room-functions-block
+              input(type="checkbox", id="id-1", checked).room-functions-input
+              label(for="id-1").room-functions-item.fast-change
+                img(src="../images/general_svet.png").room-functions-item__img
+            .room-functions-block
+              input(type="checkbox", id="id-2").room-functions-input
+              label(for="id-2").room-functions-item.fast-change
+                img(src="../images/general_elec.png").room-functions-item__img
+            .room-functions-block
+              .room-functions-item
+                img(src="../images/general_temp.png").room-functions-item__img
+                span.room-functions-item__val &deg;C<br>25.5
+            .room-functions-block
+              input(type="checkbox", id="id-3", checked).room-functions-input
+              label(for="id-3").room-functions-item.fast-change
+                img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Туалет
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Прихожая
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Кухня
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Спальня
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Детская
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+        .room
+          .room-name Гостинная
+          .room-functions
+            a.room-functions-item
+              img(src="../images/general_svet.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_elec.png").room-functions-item__img
+            a.room-functions-item
+              img(src="../images/general_temp.png").room-functions-item__img
+              span.room-functions-item__val &deg;C<br>25.5
+            a.room-functions-item
+              img(src="../images/general_voda.png").room-functions-item__img
+          button.room-more ПОДРОБНЕЕ
+
+
+    .detail
+      header.header-detail
+        button.back ВЕРНУТЬСЯ К ПЛАНИРОВКЕ
+
+      main.main-detail
+
+        .main-detail__title Спальня
+
+        .main-detail-block
+          .main-detail-block__title Освещение
+          .main-detail-block__function контрол
+
+    svg(version="1.1", xmlns="http://www.w3.org/2000/svg").display-none
+      filter(id="blur")
+        feGaussianBlur(stdDeviation="3")
