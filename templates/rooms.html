@@ -34,6 +34,8 @@
                                    {% if yz.idfunc  == tz.func_idfunc  %}
 
 
+
+
                                         {% if yz.measure == "вкл/выкл" %}
                                             {% for ux in device %}
                                                 {% if ux.iddevice == dz.id_dev%}
@@ -59,6 +61,7 @@
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
+
 
 
                                        {% if yz.name == 'текущая температура' %}
@@ -92,6 +95,8 @@
                                            {% endif %}
 
 
+
+
                                         {% if yz.name == 'терморегулятор_уставка' %}
                                                    {% for ux in device %}
                                                {% if ux.iddevice == dz.id_dev%}
@@ -102,9 +107,9 @@
 
 
                                                                 <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
-      <b>{{yz.value}}</b>
-      <div class="slider-range"></div>
- </div>
+                                                                    <b>{{yz.value}}</b>
+                                                                    <div class="slider-range"></div>
+                                                                 </div>
 
 
                                                                     {% endif %}
@@ -116,9 +121,9 @@
                                                                 {% if yz.iddevice == ux.iddevice %}
 
                                                                     <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
-      <b>{{yz.value}}</b>
-      <div class="slider-range"></div>
- </div>
+                                                                      <b>{{yz.value}}</b>
+                                                                       <div class="slider-range"></div>
+                                                                    </div>
 
 
                                                                     {% endif %}
@@ -128,7 +133,6 @@
                                                {% endif %}
                                             {% endfor %}
                                            {% endif %}
-
 
 
 
