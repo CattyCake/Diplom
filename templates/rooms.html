@@ -70,7 +70,7 @@
                                                                 {% if yz.iddevice == ux.iddevice %}
 
 
-                                            Температура  {{ yz.value }} градусов
+                                            Температура  <b><font color="green">{{ yz.value }} </font></b> градусов
 
                                                                     {% endif %}
                                                                 {% endif %}
@@ -81,7 +81,7 @@
                                                                 {% if yz.iddevice == ux.iddevice %}
 
 
-                                            Температура  {{ yz.value }} градусов
+                                            Температура  <b><font color="green">{{ yz.value }} </font></b> градусов
 
                                                                     {% endif %}
                                                                 {% endif %}
@@ -101,7 +101,7 @@
                                                                 {% if yz.iddevice == ux.iddevice %}
 
 
-                                                                <div class="slider" value="{{ yz.value }}" id="yz.id">
+                                                                <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
       <b>{{yz.value}}</b>
       <div class="slider-range"></div>
  </div>
@@ -115,7 +115,7 @@
                                                             {% if yz.idparametrs == 8 %}
                                                                 {% if yz.iddevice == ux.iddevice %}
 
-                                                                    <div class="slider" value="{{ yz.value }}" id="yz.id">
+                                                                    <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
       <b>{{yz.value}}</b>
       <div class="slider-range"></div>
  </div>
