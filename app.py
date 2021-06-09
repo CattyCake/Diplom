@@ -2,8 +2,8 @@ from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import cgi
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/surgut"
+app = Flaskh(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://sql4418114:8mtyhj4wCf@sql4.freesqldatabase.com:3306/sql4418114"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -114,12 +114,9 @@ class Device_parametr(db.Model):
 
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 
-@app.route('/rooms', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 
 def rooms():
  if request.method == "POST":
@@ -201,7 +198,7 @@ def about():
         try:
             db.session.add(room)
             db.session.commit()
-            return redirect('/rooms')
+            return redirect('/')
         except:
             return "ошибка"
     else:
