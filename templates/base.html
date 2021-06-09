@@ -84,6 +84,27 @@ document.addEventListener('click', function(e) {
 }, false);
 </script>
 
+     <script>
+$(document).ready(function() {
+    $(".slider").each(function() {
+        // $this is a reference to .slider in current iteration of each
+        $this = $(this);
+          var value = $($this).attr('value')
+        // find any .slider-range element WITHIN scope of $this
+        $(".slider-range", $this).slider({
+            value: value,
+            min: 0,
+            max: 40,
+
+            slide: function( event, ui ) {
+               // find any element with class .amount WITHIN scope of $this
+                    $(this).siblings().text(ui.value);
+            }
+        });
+    });
+});
+  </script>
+
 
         <script>
  var positions = JSON.parse(localStorage.positions || "{}");

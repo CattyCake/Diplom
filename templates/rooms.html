@@ -92,6 +92,45 @@
                                            {% endif %}
 
 
+                                        {% if yz.name == 'терморегулятор_уставка' %}
+                                                   {% for ux in device %}
+                                               {% if ux.iddevice == dz.id_dev%}
+                                                    {% for yz in device_parametr %}
+                                                        {% if dz.dop_addr == 0 %}
+                                                            {% if yz.idparametrs == 7 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+
+                                                                <div class="slider" value="{{ yz.value }}" id="yz.id">
+      <b>{{yz.value}}</b>
+      <div class="slider-range"></div>
+ </div>
+
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+
+                                                        {% if dz.dop_addr == 1 %}
+                                                            {% if yz.idparametrs == 8 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+                                                                    <div class="slider" value="{{ yz.value }}" id="yz.id">
+      <b>{{yz.value}}</b>
+      <div class="slider-range"></div>
+ </div>
+
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+                                                   {% endfor %}
+                                               {% endif %}
+                                            {% endfor %}
+                                           {% endif %}
+
+
+
 
 
                                    {% endif %}
