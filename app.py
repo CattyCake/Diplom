@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import cgi
 
-app = Flaskh(__name__)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://sql4418114:8mtyhj4wCf@sql4.freesqldatabase.com:3306/sql4418114"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
