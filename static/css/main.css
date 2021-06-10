@@ -1,36 +1,4 @@
-input[type="checkbox"]{
-    position: relative;
-    width: 80px;
-    height: 40px;
-    -webkit-appearance: none;
-    outline: none;
-    background: #c6c6c6;
-    border-radius: 20px;
-    transition: .5s;
-    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
-}
-input:checked[type="checkbox"]{
-    background: #40c551;
-}
 
-input[type="checkbox"]:before{
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    top: 0;
-    left: 0;
-    background: #fff;
-    transition: .5s;
-    transform: scale(1.1);
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);
-}
-
-input:checked[type="checkbox"]:before{
-    left: 40px;
-
-}
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -1282,3 +1250,51 @@ button:hover {
 .main {width: 100%}
 }
 
+.pic {
+text-align: center; /* Выравнивания картинки по центру в html */
+}
+
+
+
+.gg {
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    margin-bottom: 5px;
+    border-radius: .5rem;
+    transition: all .2s;
+    background: linear-gradient(to top, #999999, #c4c4c4);
+    background: -ms-linear-gradient(to top, #999999, #c4c4c4);
+}
+
+label {
+ width: 50px; /* Ширина рисунка */
+ height: 50px; /* Высота рисунка */
+
+ display: block; /* Блочный элемент */
+ position: relative; /* Относительное позиционирование */
+}
+
+input[type="checkbox"] + span {
+ position: absolute; /* Абсолютное позиционирование */
+ left: 0; top: 0;
+ width: 100%; height: 100%;
+ background: linear-gradient(to top, #999999, #c4c4c4); /* Фоновый рисунок */
+ border-radius: 5px;
+ cursor: pointer; /* Курсор в виде руки */
+}
+
+
+input[type="checkbox"]:checked + span  	{
+ background: linear-gradient(to top, #ff6619, #ffd919);;
+}

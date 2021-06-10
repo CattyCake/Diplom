@@ -23,8 +23,6 @@
 
                             <h3>{{ dz.name_device }}</h3>
 
-                            <img src="/static{{dz.img }} "width="50" height="50"  >
-
 
 
 
@@ -44,14 +42,15 @@
                                                             {% if dz.id_dev == yz.iddevice %}
                                                             {% if yz.value == 0 %}
 
-                                                                <div class="container">
-	                                              <label><input class="form-check-input" type="checkbox" id="shest02"   value="{{ yz.id  }}"> </label>
+
+                                                                <div class="container pic">
+	                                              <label><input class="form-check-input" type="checkbox" id="shest02"   value="{{ yz.id  }}"> <span> <img src="/static{{dz.img }} "width="50" height="50"  ></span></label>
                                                                 </div>
 
                                                         {% elif yz.value == 1 %}
 
-                                                                <div class="container">
-	                                              <label><input class="form-check-input" type="checkbox" id="shest02" checked=checked  value="{{ yz.id }}"> </label>
+                                                                <div class="container pic">
+	                                              <label><input class="form-check-input" type="checkbox" id="shest02" checked=checked  value="{{ yz.id }}"> <span> <img src="/static{{dz.img }} "width="50" height="50"  ></span></label>
                                                                 </div>
 
                                                                 {% endif %}
@@ -61,7 +60,6 @@
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
-
 
 
                                        {% if yz.name == 'текущая температура' %}
