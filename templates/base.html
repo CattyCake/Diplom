@@ -134,64 +134,46 @@ $(function() {
 });
     </script>
 
-    <script>$('form').submit(function () {
-    return false;
-});</script>
-
 
 
 </head>
 <body >
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-        <h5 class="my-0 mr-md-auto font_weight_normal">Умный дом</h5>
 
-        <nav class="my-2 my-md-0 mr-md-3">
-        <a class="py-2 text-dark" href="/about">Добавить комнату</a>
-        <a class="py-2 text-dark" href="/">Главная</a>
-
-      </nav>
+<div class="page">
+    <div class="page-overlay"></div>
+    <div class="detail">
+        <header class="header-detail">
+            <div class="back">ВЕРНУТЬСЯ К ПЛАНИРОВКЕ</div>
+        </header>
+        <main class="main-detail"></main>
     </div>
+    <header class="header">
+        <div class="title"><b>Smart</b> Home</div>
+        <div class="controls">
+            <button class="controls__button shine">ВЫКЛЮЧИТЬ ВЕСЬ СВЕТ</button>
+            <button class="controls__button electric">ВЫКЛЮЧИТЬ ВСЕ ЭЛЕКТРИЧЕСТВО</button>
+            <button class="controls__button water">ПЕРЕКРЫТЬ ВСЮ ВОДУ</button>
+        </div>
+    </header>
+    <main class="main">
+      <div class="desc">Выберите необходимую комнату для управления</div>
+    <div class="area" margin: 0 auto>
 
-      <title>{% block title %}
+
+
+<title>{% block title %}
     {% endblock title %}</title>
 
 {% block body %}{% endblock body %}
-<footer class="container pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <img class="mb-2" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19">
-        <small class="d-block mb-3 text-muted">© 2017–2021</small>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Features</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>About</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+
+            </div>
+</main>
+    <svg class="display-none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <filter id="blur">
+            <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+        </filter>
+    </svg>
+</div>
+
 </body>
 </html>

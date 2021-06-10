@@ -9,23 +9,23 @@
 {% block body %}
 
 
-    <div class="container mt-5">
-     <h1>Все комнаты</h1>
+
 
      {% for rooms in rooms %}
-           <div id="draggable" class="container alert alert-info">
-           <div><h2>{{ rooms.name }}</h2></div>
-            <div> {% for device_rooms in device_rooms %}
+           <div id="draggable" class="room ui-draggable ui-draggable-handle ui-resizable">
+           <div class="room-name"><h2>{{ rooms.name }}</h2></div>
+
+            {% for device_rooms in device_rooms %}
                {% if device_rooms.id_room == rooms.id_room  %}
 
                    {% for dz in id_dop_addr %}
                        {% if device_rooms.id_dop_addr == dz.id_dop_addr  %}
 
                             <h3>{{ dz.name_device }}</h3>
-                           <div class="container" >
+
                             <img src="/static{{dz.img }} "width="50" height="50"  >
 
-                           </div>
+
 
 
                             {% for tz in func_has_dop_addr %}
@@ -146,11 +146,12 @@
                {% endif %}
              {% endfor %}
 
+
+          <a href="/rooms/{{ rooms.id_room }}" class="btn btn-warning">Подробнее</a>
             </div>
-        <a href="/rooms/{{ rooms.id_room }}" class="btn btn-warning">Подробнее</a>
-           </div>
+
     {% endfor %}
-    </div>
+
 
    <form method="post">
 <textarea name="checkid" id="checkid" class="form-control" hidden="hidden")  ></textarea><br>
