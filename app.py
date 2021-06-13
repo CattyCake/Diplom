@@ -1,10 +1,20 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_mysqldb import MySQL, MySQLdb
 import cgi
 
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://sql4418114:8mtyhj4wCf@sql4.freesqldatabase.com:3306/sql4418114"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/surgut"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'surgut'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+mysql = MySQL(app)
+
 
 db = SQLAlchemy(app)
 
@@ -28,7 +38,7 @@ class Device_room(db.Model):
 
     __tablename__ ='device_room'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id_d_r = db.Column(db.Integer, primary_key=True)
     id_dop_addr = db.Column(db.Integer, db.ForeignKey('dop_addr.id_dop_addr'), primary_key=False)
     id_room = db.Column(db.Integer, db.ForeignKey('room.id_room'), primary_key=False)
 
@@ -94,115 +104,93 @@ class Device(db.Model):
     address = db.Column(db.DECIMAL(3, 0), primary_key=False)
     dev = db.relationship('Dop_addr', backref='iddevice')
 
-
-
     def __repr__(self):
         return '<Device %>' % self.id
 
-class Device_parametr(db.Model):
+class Function1(db.Model):
 
-    __tablename__ ='device_parametr'
+    __tablename__ ='function1'
 
-    id = db.Column(db.Integer, primary_key=True)
-    iddevice = db.Column(db.Integer, primary_key=False)
-    idparametrs = db.Column(db.Integer, primary_key=False)
-    value = db.Column(db.Integer, primary_key=False)
+    idfunction = db.Column(db.Integer, primary_key=True)
+    idfunc = db.Column(db.Integer, primary_key=False)
+    data = db.Column(db.DECIMAL(6, 1), primary_key=False)
+    time = db.Column(db.DATETIME, primary_key=False)
+    id_dop_addr = db.Column(db.Integer, primary_key=False)
+    comment = db.Column(db.String(45), primary_key=False)
+
     def __repr__(self):
-        return '<Device_parametr %>' % self.id
+        return '<Function1 %>' % self.id
 
 
 
+class Device_Card():
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(45), primary_key=False)
+    value = db.Column(db.DECIMAL(6, 1), primary_key=False)
+    idfunc = db.Column(db.Integer, primary_key=False)
+    code = db.Column(db.String(45), primary_key=False)
+    idgroup = db.Column(db.Integer, primary_key=False)
+    val_max = db.Column(db.Integer, primary_key=False)
+    val_min = db.Column(db.Integer, primary_key=False)
+    write_enable = db.Column(db.Integer, primary_key=False)
+    idtype_device = db.Column(db.Integer, primary_key=False)
+    measure = db.Column(db.Integer, primary_key=False)
+    img = db.Column(db.String(45), primary_key=False)
 
+    def __repr__(self):
+        return '<Device_Card %>' % self.id
 
 
 
 @app.route('/', methods=['POST', 'GET'])
-
 def rooms():
- if request.method == "POST":
-     id = request.form['checkid']
-     device_parametr = Device_parametr.query.get(id)
-     device_parametr.value = request.form['checkvalue']
 
-     try:
-         db.session.commit()
-
-         id_dop_addr = Dop_addr.query.all()
-         device_room = Device_room.query.all()
-         rooms = Room.query.order_by(Room.name).all()
-         func_has_dop_addr = Func_has_dop_addr.query.all()
-         func = Func.query.all()
-         device = Device.query.all()
-         device_parametr = Device_parametr.query.all()
-
-         return render_template('rooms.html', device_parametr=device_parametr, device=device, func=func,
-                                func_has_dop_addr=func_has_dop_addr, rooms=rooms, device_rooms=device_room,
-                                id_dop_addr=id_dop_addr)
-
-
-     except: "ошибка"
-
- else:
-
-    id_dop_addr = Dop_addr.query.all()
+    rooms = Room.query.all()
     device_room = Device_room.query.all()
-    rooms = Room.query.order_by(Room.name).all()
-    func_has_dop_addr = Func_has_dop_addr.query.all()
+    dop_addr = Dop_addr.query.all()
+    function1 = Function1.query.all()
     func = Func.query.all()
-    device = Device.query.all()
-    device_parametr = Device_parametr.query.all()
 
 
-    return render_template('rooms.html', device_parametr=device_parametr, device=device, func=func, func_has_dop_addr=func_has_dop_addr, rooms=rooms, device_rooms=device_room, id_dop_addr=id_dop_addr)
-
-def checkadd():
-
-    if request.method == "POST":
-         iddevice = 40
-         idparameter = 1
-         value = request.form['checkid']
-         print("value")
-
-         device_parametr = Device_parametr(iddevice=iddevice, idparameter=idparameter, value=value)
-
-    try:
-        db.session.add(device_parametr)
-        db.session.commit()
-    except:
-            return "ошибка"
-    else: pass
+    return render_template('rooms.html', func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)
 
 
 
+@app.route('/ajax', methods = ['POST'])
+def ajax_request():
+
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if request.method == 'POST':
+        rooms = Room.query.all()
+        device_room = Device_room.query.all()
+        dop_addr = Dop_addr.query.all()
+        function1 = Function1.query.all()
+        func = Func.query.all()
+
+    return  jsonify({'htmlresponse': render_template('response.html',  func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)})
+
+@app.route('/roominfo', methods = ['POST'])
+def ajax_info():
+
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if request.method == 'POST':
+        id = request.form['id']
+        rooms = Room.query.all()
+        device_room = Device_room.query.all()
+        dop_addr = Dop_addr.query.all()
+        function1 = Function1.query.all()
+        func = Func.query.all()
+
+    return  jsonify({'htmlresponse1': render_template('roominfo.html',id=id,  func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)})
 
 
 
 @app.route('/rooms/<int:id>')
 def rooms_detail(id):
+
     room = Room.query.get(id)
-    device_room = Device_room.query.get(id)
-    return render_template('rooms_detai.html', room=room, device_rooms=device_room)
 
-
-@app.route('/about', methods=['POST', 'GET'])
-def about():
-    if request.method == "POST":
-        name = request.form['name']
-        window = request.form['window']
-        wall = request.form['wall']
-        door = request.form['door']
-        sort = 100
-
-        room = Room(name=name, window=window, wall=wall, door=door, sort=sort)
-
-        try:
-            db.session.add(room)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return "ошибка"
-    else:
-        return render_template('about.html')
+    return render_template('rooms_detai.html', room=room )
 
 
 if __name__ == '__main__':

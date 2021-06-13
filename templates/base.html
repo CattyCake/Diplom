@@ -21,117 +21,44 @@
 <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
 <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?ver=1.6.4'></script>
+      <script type="text/javascript" src='ajax.js'></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 <meta name="theme-color" content="#7952b3">
 
 
-
+    <script src="/static/js/Checkboxes.js"></script>
+    <script src="/static/js/Sliders.js"></script>
+    <script src="/static/js/DragResize.js"></script>
+    <script src="/static/js/AjaxRefresh.js" type='text/javascript'></script>
 
     <script>
-var matches;  // matchesSelector на момент написания статьи поддерживается только с префиксами
-(function(doc) {
-   matches =
-      doc.matchesSelector ||
-      doc.webkitMatchesSelector ||
-      doc.mozMatchesSelector ||
-      doc.oMatchesSelector ||
-      doc.msMatchesSelector;
-})(document.documentElement);
-
-document.addEventListener('click', function(e) {
-   if ( matches.call( e.target, '[id="shest02"]:checked' ) ) {
-
-       var msg = $( e.target, '[id="shest02"]:checked' ).attr('value') || 'Перед нажатием на кнопку выделите checkbox!';
-
-        $('#checkid').val(msg);
-        $('#checkvalue').val(1);
-        document.querySelector('.CheckPush').click()
-
-       alert('Устройство ' + msg + ' включено');
-
+        function dosomething(element){
+            var id = element.value
+              $.ajax({
+   url: '/roominfo',
+   type: 'post',
+   data: {id:id},
+   beforeSend: function(){
+    // Show image container
+    $("#loader").show();
+   },
+       success: function(response){
+    $('.response').empty();
+    $('.response').append(response.htmlresponse1);
+   },
+   complete:function(data){
+    // Hide image container
+    $("#loader").hide();
 
    }
-   else if ( matches.call( e.target, '[id="shest02"]' ) )
-   {
-       var msg = $( e.target, '[id="shest02"]:checked' ).attr('value') || 'Перед нажатием на кнопку выделите checkbox!';
-        $('#checkid').val(msg);
-        $('#checkvalue').val(0);
-        document.querySelector('.CheckPush').click()
-
-
-             alert('Устройство ' + msg + ' выключено');
-   }
-
-}, false);
-</script>
-
-
-     <script>
-$(document).ready(function() {
-    $(".slider").each(function() {
-        // $this is a reference to .slider in current iteration of each
-        $this = $(this);
-          var value = $($this).attr('value')
-          var id = $($this).attr('id')
-        // find any .slider-range element WITHIN scope of $this
-        $(".slider-range", $this).slider({
-            value: value,
-            min: 0,
-            max: 40,
-
-
-            slide: function( event, ui ) {
-               // find any element with class .amount WITHIN scope of $this
-                    $(this).siblings().text(ui.value);
-            },
-
-            stop: function(event, ui) {
-              $('#checkid').val(id);
-              $('#checkvalue').text(ui.value);
-              document.querySelector('.CheckPush').click()
-                alert('Температура устройства ' + id + ' установлена на '+ ui.value + ' градусов');
-            }
-
-        });
-    });
-});
-  </script>
-
-
-        <script>
- var positions = JSON.parse(localStorage.positions || "{}");
-var size = JSON.parse(localStorage.size || "{}");
-$(function() {
-  var d = $("[id=draggable]").attr("id", function(i) {
-    return "draggable_" + i
-  })
-  $.each(positions, function(id, pos) {
-    $("#" + id).css(pos)
-  })
-  $.each(size, function(id, siz) {
-    $("#" + id).css(siz)
-  })
-
-  d.draggable({
-    containment: "#containment-wrapper",
-    scroll: false,
-    stop: function(event, ui) {
-      positions[this.id] = ui.position
-      localStorage.positions = JSON.stringify(positions)
-    }
   });
+        }
 
-  d.resizable({
-    scroll: false,
-    stop: function(event, ui) {
-      size[this.id] = ui.size
-      localStorage.size = JSON.stringify(size)
-    }
-  });
-});
     </script>
 
 
@@ -156,6 +83,7 @@ $(function() {
             <button class="controls__button ">ВЫКЛЮЧИТЬ ВЕСЬ СВЕТ</button>
             <button class="controls__button ">ВЫКЛЮЧИТЬ ВСЕ ЭЛЕКТРИЧЕСТВО</button>
             <button class="controls__button ">ПЕРЕКРЫТЬ ВСЮ ВОДУ</button>
+            <button class="controls__button" id='but_search' value='Search'>ОБНОВИТЬ ДАННЫЕ</button>
         </div>
     </header>
     <main class="main">
