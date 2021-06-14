@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_mysqldb import MySQL, MySQLdb
 import cgi
 
 
@@ -8,12 +7,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://sql4418114:8mtyhj4wCf@sql4.freesqldatabase.com:3306/sql4418114"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'surgut'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-mysql = MySQL(app)
+
 
 
 db = SQLAlchemy(app)
@@ -159,7 +153,6 @@ def rooms():
 @app.route('/ajax', methods = ['POST'])
 def ajax_request():
 
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if request.method == 'POST':
         rooms = Room.query.all()
         device_room = Device_room.query.all()
@@ -175,7 +168,6 @@ def ajax_request():
 @app.route('/roominfo', methods = ['POST'])
 def ajax_info():
 
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if request.method == 'POST':
         id = request.form['id']
         rooms = Room.query.all()
