@@ -115,6 +115,19 @@ class Function1(db.Model):
     def __repr__(self):
         return '<Function1 %>' % self.id
 
+class Type_device(db.Model):
+
+    __tablename__ ='type_device'
+
+    idtype_device = db.Column(db.Integer, primary_key=True)
+    name_type_device = db.Column(db.String(50), primary_key=False)
+    idgroup = db.Column(db.Integer, primary_key=False)
+    code = db.Column(db.String(255), primary_key=False)
+
+
+    def __repr__(self):
+        return '<Type_device %>' % self.id
+
 
 
 class Device_Card():
@@ -144,9 +157,9 @@ def rooms():
     dop_addr = Dop_addr.query.all()
     function1 = Function1.query.all()
     func = Func.query.all()
+    type_device = Type_device.query.all()
 
-
-    return render_template('rooms.html', func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)
+    return render_template('rooms.html', type_device=type_device, func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)
 
 
 
@@ -159,10 +172,11 @@ def ajax_request():
         dop_addr = Dop_addr.query.all()
         function1 = Function1.query.all()
         func = Func.query.all()
+        type_device = Type_device.query.all()
 
 
 
-    return  jsonify({'htmlresponse': render_template('response.html', func=func, rooms=rooms, device_room=device_room,
+    return  jsonify({'htmlresponse': render_template('response.html', type_device=type_device, func=func, rooms=rooms, device_room=device_room,
                                          function1=function1, dop_addr=dop_addr)})
 
 @app.route('/roominfo', methods = ['POST'])
