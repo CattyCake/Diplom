@@ -83,7 +83,7 @@ class Func(db.Model):
     idfunc = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(45), primary_key=False)
     number = db.Column(db.Integer, primary_key=False)
-    write_enable = db.Column(db.Integer, primary_key=False)
+    write_enable = db.Column(db.BINARY(1), primary_key=False)
     val_min = db.Column(db.Integer, primary_key=False)
     val_max = db.Column(db.Integer, primary_key=False)
     measure = db.Column(db.String(45), primary_key=False)
@@ -167,7 +167,10 @@ def ajax_request():
         function1 = Function1.query.all()
         func = Func.query.all()
 
-    return  jsonify({'htmlresponse': render_template('response.html',  func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)})
+
+
+    return  jsonify({'htmlresponse': render_template('response.html', func=func, rooms=rooms, device_room=device_room,
+                                         function1=function1, dop_addr=dop_addr)})
 
 @app.route('/roominfo', methods = ['POST'])
 def ajax_info():
@@ -179,18 +182,23 @@ def ajax_info():
         device_room = Device_room.query.all()
         dop_addr = Dop_addr.query.all()
         function1 = Function1.query.all()
+        y=int(id)
+        x=bytes(b'\x01')
+
+
         func = Func.query.all()
 
-    return  jsonify({'htmlresponse1': render_template('roominfo.html',id=id,  func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)})
+    return jsonify({'htmlresponse1': render_template('roominfo.html', y=y, x=x,  id=id,  func=func, rooms=rooms, device_room=device_room,
+                                                     function1= function1, dop_addr=dop_addr)})
 
+@app.route('/button', methods=['POST'])
+def ajax_button():
+    return jsonify({'htmlresponse2': render_template('ButtonUpdate.html')})
 
+@app.route('/buttonback', methods=['POST'])
+def ajax_buttonback():
+    return jsonify({'htmlresponse3': render_template('ButtonBack.html')})
 
-@app.route('/rooms/<int:id>')
-def rooms_detail(id):
-
-    room = Room.query.get(id)
-
-    return render_template('rooms_detai.html', room=room )
 
 
 if __name__ == '__main__':

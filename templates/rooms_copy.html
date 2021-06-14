@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Все комнаты
+{% endblock title %}
+
+
+{% block body %}
+
+
+
+
+     {% for rooms in rooms %}
+           <div id="draggable" class="room ui-draggable ui-draggable-handle ui-resizable">
+           <div class="room-name"><h2>{{ rooms.name }}</h2></div>
+
+            {% for device_rooms in device_rooms %}
+               {% if device_rooms.id_room == rooms.idroom  %}
+
+                   {% for id_dop_addr in id_dop_addr %}
+                       {% if device_rooms.id_dop_addr == id_dop_addr.id_dop_addr  %}
+
+                            <h3>{{ id_dop_addr.name_device }}</h3>
+
+
+                            {% for func_has_dop_addr in func_has_dop_addr %}
+                             {% if func_has_dop_addr.dop_addr_id_dop_addr  == id_dop_addr.id_dop_addr  %}
+                                 
+                                 {% for yz in func %}
+                                   {% if yz.idfunc  == func_has_dop_addr.func_idfunc  %}
+
+
+                                        {% if yz.measure == "вкл/выкл" %}
+                                            {% for ux in device %}
+                                                {% if ux.iddevice == id_dop_addr.id_dev%}
+
+
+                                                                <div class="container pic">
+	                                              <label><input class="form-check-input" type="checkbox" id="shest02"   value="уй"> <span> <img src="/static{{id_dop_addr.img }} "width="50" height="50"  ></span></label>
+                                                                </div>
+
+                                                        {% elif yz.value == 1 %}
+
+                                                                <div class="container pic">
+	                                              <label><input class="form-check-input" type="checkbox" id="shest02" checked=checked  value="{{ yz.id }}"> <span> <img src="/static{{id_dop_addr.img }} "width="50" height="50"  ></span></label>
+                                                                </div>
+
+
+                                                 {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+
+
+                                       {% if yz.name == 'текущая температура' %}
+                                           {% for ux in device %}
+                                               {% if ux.iddevice == id_dop_addr.id_dev%}
+                                                    {% for yz in device_parametr %}
+                                                        {% if id_dop_addr.dop_addr == 0 %}
+                                                            {% if yz.idparametrs == 5 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+
+                                            Температура  <b><font color="green">{{ yz.value }} </font></b> градусов
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+
+                                                        {% if id_dop_addr.dop_addr == 1 %}
+                                                            {% if yz.idparametrs == 6 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+
+                                            Температура  <b><font color="green">{{ yz.value }} </font></b> градусов
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+                                                   {% endfor %}
+                                               {% endif %}
+                                            {% endfor %}
+                                           {% endif %}
+
+
+
+
+                                        {% if yz.name == 'терморегулятор_уставка' %}
+                                                   {% for ux in device %}
+                                               {% if ux.iddevice == id_dop_addr.id_dev%}
+                                                    {% for yz in device_parametr %}
+                                                        {% if id_dop_addr.dop_addr == 0 %}
+                                                            {% if yz.idparametrs == 7 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+
+                                                                <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
+                                                                    <b>{{yz.value}}</b>
+                                                                    <div class="slider-range"></div>
+                                                                 </div>
+
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+
+                                                        {% if id_dop_addr.dop_addr == 1 %}
+                                                            {% if yz.idparametrs == 8 %}
+                                                                {% if yz.iddevice == ux.iddevice %}
+
+                                                                    <div class="slider" value="{{ yz.value }}" id="{{ yz.id }}">
+                                                                      <b>{{yz.value}}</b>
+                                                                       <div class="slider-range"></div>
+                                                                    </div>
+
+
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                        {% endif %}
+                                                   {% endfor %}
+                                               {% endif %}
+                                            {% endfor %}
+                                           {% endif %}
+
+
+
+
+                                   {% endif %}
+                                 {% endfor %}
+                             {% endif %}
+                            {% endfor %}
+                       {% endif %}
+                   {% endfor %}
+               {% endif %}
+             {% endfor %}
+
+
+          <a href="/rooms/{{ rooms.id_room }}" class="btn btn-warning">Подробнее</a>
+            </div>
+
+    {% endfor %}
+
+
+   <form method="post">
+<textarea name="checkid" id="checkid" class="form-control" hidden="hidden")  ></textarea><br>
+<textarea name="checkvalue" id="checkvalue" class="form-control" hidden="hidden")></textarea><br>
+<input type="submit" class="btn btn-success CheckPush" value="отправить" hidden="hidden")>
+</form>
+
+{% endblock body %}
+

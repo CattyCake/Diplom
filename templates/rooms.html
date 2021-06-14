@@ -3,24 +3,25 @@
 
 {% block title %}
 Все комнаты
+          <div class="container">
+  <div class="row">
+    <!-- loader -->
+    <div id='loader' style='display: none;'>
+     <b>Loading..</b>
+    </div></div></div>
+    <br/>
+    <!-- loader -->
 {% endblock title %}
 
 
 {% block body %}
 
-
-      <div class="container">
-  <div class="row">
-    <!-- loader -->
-    <div id='loader' style='display: none;'>
-     <b>Loading..</b>
-    </div>
-    <br/>
-    <!-- loader -->
-    <div class='response'>
+  <div class='response'>
 
 
-     {% for rooms in rooms %}
+
+
+   {% for rooms in rooms %}
            <div id="draggable" class="room ui-draggable ui-draggable-handle ui-resizable" >
            <div class="room-name"><h2>{{ rooms.name }}</h2></div>
 
@@ -100,6 +101,6 @@
 <textarea name="checkvalue" id="checkvalue" class="form-control" hidden="hidden")></textarea><br>
 <input type="submit" class="btn btn-success CheckPush" value="отправить" hidden="hidden")>
 </form>
-</div></div></div>
+</div>
 {% endblock body %}
 

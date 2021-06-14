@@ -1302,6 +1302,8 @@ input[type="checkbox"]:checked + span  	{
 
 .center{
   position: relative;
+  margin: 0 auto;
+  display: inline-block;
 left: 50%;
 
 transform: translate(-50%, 0);
@@ -1336,3 +1338,13 @@ transform: translate(-50%, 0);
   background: -ms-linear-gradient(to top, #d6723d, #ffb675);
   display:inline-block;
 }
+
+ #custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+

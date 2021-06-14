@@ -25,6 +25,7 @@
       <script type="text/javascript" src='ajax.js'></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
 
 
 
@@ -35,31 +36,7 @@
     <script src="/static/js/Sliders.js"></script>
     <script src="/static/js/DragResize.js"></script>
     <script src="/static/js/AjaxRefresh.js" type='text/javascript'></script>
-
-    <script>
-        function dosomething(element){
-            var id = element.value
-              $.ajax({
-   url: '/roominfo',
-   type: 'post',
-   data: {id:id},
-   beforeSend: function(){
-    // Show image container
-    $("#loader").show();
-   },
-       success: function(response){
-    $('.response').empty();
-    $('.response').append(response.htmlresponse1);
-   },
-   complete:function(data){
-    // Hide image container
-    $("#loader").hide();
-
-   }
-  });
-        }
-
-    </script>
+    <script src="/static/js/RoomInfo.js"></script>
 
 
 
@@ -83,7 +60,7 @@
             <button class="controls__button ">ВЫКЛЮЧИТЬ ВЕСЬ СВЕТ</button>
             <button class="controls__button ">ВЫКЛЮЧИТЬ ВСЕ ЭЛЕКТРИЧЕСТВО</button>
             <button class="controls__button ">ПЕРЕКРЫТЬ ВСЮ ВОДУ</button>
-            <button class="controls__button" id='but_search' value='Search'>ОБНОВИТЬ ДАННЫЕ</button>
+            <button class="controls__button but_search"  value='Search' >ОБНОВИТЬ ДАННЫЕ</button>
         </div>
     </header>
     <main class="main">

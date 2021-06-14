@@ -1,0 +1,75 @@
+<div class="container">
+
+       {% for rooms in rooms %}
+               {% if rooms.id_room == y %}
+
+            <div><h1>{{ rooms.name }}</h1></div>
+
+
+                     {% for device_room in device_room %}
+                {% if device_room.id_room == rooms.id_room %}
+                    {% for dop_addr in dop_addr %}
+                        {% if device_room.id_dop_addr == dop_addr.id_dop_addr %}
+
+                                      <div>
+                            {% for function1 in function1 %}
+                                {% if function1.id_dop_addr == dop_addr.id_dop_addr %}
+                                    {% for func in func %}
+                                        {% if func.idfunc == function1.idfunc %}
+                                            {% if func.write_enable == x  %}
+
+
+                                                  <script> $(document).ready(function() {
+    $(".slider").each(function() {
+        // $this is a reference to .slider in current iteration of each
+        $this = $(this);
+          var value = $($this).attr('value')
+          var min  = $($this).attr('slider-min')
+          var max  = $($this).attr('slider-max')
+        // find any .slider-range element WITHIN scope of $this
+        $(".slider-range", $this).slider({
+            value: value/1,
+            min: min/1,
+            max: max/1,
+
+
+            slide: function( event, ui ) {
+               // find any element with class .amount WITHIN scope of $this
+                    $(this).siblings().text(ui.value);
+            },
+
+            stop: function(event, ui) {
+              $('#checkid').val(id);
+              $('#checkvalue').text(ui.value);
+              document.querySelector('.CheckPush').click()
+                alert('Температура устройства ' + id + ' установлена на '+ ui.value + ' градусов');
+            }
+
+        });
+    });
+});</script>
+
+
+
+                                            <div><h3>{{ func.name }}</h3></div>
+                                                   <div class="slider" slider-min = "{{ func.val_min }}" slider-max="{{ func.val_max }}" value="{{ function1.data/1  }}" id="{{ function1.idfunction }}" dop ="{{ dop_addr.id_dop_addr }}">
+                                                                      <b>{{function1.data/1}}</b>
+                                                                       <div class="slider-range"></div>
+                                                                    </div>
+
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                               </div>
+
+                       {% endif %}
+                    {% endfor %}
+                {% endif %}
+        {% endfor %}
+            {% endif %}
+
+        {% endfor %}
+
+   </div>
