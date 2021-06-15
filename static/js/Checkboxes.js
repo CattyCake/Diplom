@@ -14,14 +14,14 @@ document.addEventListener('click', function(e) {
        var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
        var data = 1.0 || 'Перед нажатием на кнопку выделите checkbox!';
        var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
-        alert('Устройство ' + id + ' включено');
+
 
                $.ajax({
      url: '/ajaxcheckbox',
          type: 'post',
                    data: {id:id, data:data, dop_addr:dop_addr},
            success: function(response){
-
+        alert('Устройство ' + id + ' включено');
                  },
                 });
 
@@ -34,14 +34,14 @@ document.addEventListener('click', function(e) {
         var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
        var data = 0.0 || 'Перед нажатием на кнопку выделите checkbox!';
        var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
-        alert('Устройство ' + id + ' выключено');
+
 
                $.ajax({
      url: '/ajaxcheckbox',
          type: 'post',
                    data: {id:id, data:data, dop_addr:dop_addr},
            success: function(response){
-
+alert('Устройство ' + id + ' выключено');
                  },
                 });
    }
