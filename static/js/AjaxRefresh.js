@@ -24,6 +24,9 @@ $(document).ready(function(){
  });
 
  setInterval(function() {
+      var checkboxes = document.getElementsByClassName('checkbox');
+  for (var index = 0; index < 1; index++) {
+   if (checkboxes[index].checked == 0 || 1) {
     $.ajax({
    url: '/ajax',
    type: 'post',
@@ -41,7 +44,7 @@ $(document).ready(function(){
 
    }
   });
-}, 10000000000000);
+}}}, 5000);
 
 $(document).on("click",".but_search", function(e){
      $.ajax({
