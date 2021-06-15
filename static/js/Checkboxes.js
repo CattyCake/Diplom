@@ -1,4 +1,4 @@
-var matches;  // matchesSelector на момент написания статьи поддерживается только с префиксами
+var matches;
 (function(doc) {
    matches =
       doc.matchesSelector ||
@@ -11,17 +11,39 @@ var matches;  // matchesSelector на момент написания стать
 document.addEventListener('click', function(e) {
    if ( matches.call( e.target, '[it="shest02"]:checked' ) ) {
 
-       var msg = $( e.target, '[it="shest02"]:checked' ).attr('name') || 'Перед нажатием на кнопку выделите checkbox!';
+       var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
+       var data = 1.0 || 'Перед нажатием на кнопку выделите checkbox!';
+       var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
+        alert('Устройство ' + id + ' включено');
 
-       alert('Устройство ' + msg + ' включено');
+               $.ajax({
+     url: '/ajaxcheckbox',
+         type: 'post',
+                   data: {id:id, data:data, dop_addr:dop_addr},
+           success: function(response){
+
+                 },
+                });
+
+
 
 
    }
    else if ( matches.call( e.target, '[it="shest02"]' ) )
    {
-       var msg = $( e.target, '[it="shest02"]:checked' ).attr('name') || 'Перед нажатием на кнопку выделите checkbox!';
+        var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
+       var data = 0.0 || 'Перед нажатием на кнопку выделите checkbox!';
+       var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
+        alert('Устройство ' + id + ' выключено');
 
-             alert('Устройство ' + msg + ' выключено');
+               $.ajax({
+     url: '/ajaxcheckbox',
+         type: 'post',
+                   data: {id:id, data:data, dop_addr:dop_addr},
+           success: function(response){
+
+                 },
+                });
    }
 
 }, false);

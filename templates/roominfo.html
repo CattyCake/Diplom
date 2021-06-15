@@ -36,13 +36,27 @@
             slide: function( event, ui ) {
                // find any element with class .amount WITHIN scope of $this
                     $(this).siblings().text(ui.value);
-            },
 
+            },
             stop: function(event, ui) {
-              $('#checkid').val(id);
-              $('#checkvalue').text(ui.value);
-              document.querySelector('.CheckPush').click()
-                alert('Температура устройства ' + id + ' установлена на '+ ui.value + ' градусов');
+
+$               (this).siblings().text(ui.value);
+    var id = $($this).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
+       var data = $(this).siblings() || 'Перед нажатием на кнопку выделите checkbox!';
+       var dop_addr = $($this).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
+          alert('Температура устройства '+ id + '  установлена на '+ data + ' градусов');
+
+               $.ajax({
+     url: '/ajaxcheckbox',
+         type: 'post',
+                   data: {id:id, data:data, dop_addr:dop_addr},
+           success: function(response){
+
+                 },
+                });
+
+
+
             }
 
         });

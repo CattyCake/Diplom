@@ -20,7 +20,11 @@ $(document).ready(function() {
               $('#checkid').val(id);
               $('#checkvalue').text(ui.value);
               document.querySelector('.CheckPush').click()
+                $this.slider
                 alert('Температура устройства ' + id + ' установлена на '+ ui.value + ' градусов');
+
+
+
             }
 
         });

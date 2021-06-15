@@ -159,7 +159,8 @@ def rooms():
     func = Func.query.all()
     type_device = Type_device.query.all()
 
-    return render_template('rooms.html', type_device=type_device, func=func, rooms=rooms, device_room=device_room, function1= function1, dop_addr=dop_addr)
+    return render_template('rooms.html', type_device=type_device, func=func, rooms=rooms,
+                           device_room=device_room, function1= function1, dop_addr=dop_addr)
 
 
 
@@ -204,6 +205,39 @@ def ajax_button():
 @app.route('/buttonback', methods=['POST'])
 def ajax_buttonback():
     return jsonify({'htmlresponse3': render_template('ButtonBack.html')})
+
+@app.route('/ajaxcheckbox', methods = ['POST'])
+def ajax_checkbox():
+
+    if request.method == 'POST':
+
+        id1 = request.form['id']
+        data1 = request.form['data']
+        dop_addr1 = request.form['dop_addr']
+
+        function1 = Function1.query.get(id1)
+        function1.data = data1
+
+        try:
+            db.session.commit()
+        except: "Ошибка"
+
+        print(id1, data1, dop_addr1)
+
+        rooms = Room.query.all()
+        device_room = Device_room.query.all()
+        dop_addr = Dop_addr.query.all()
+        function1 = Function1.query.all()
+        func = Func.query.all()
+        type_device = Type_device.query.all()
+
+
+
+    return  jsonify({'htmlresponse': render_template('response.html', type_device=type_device, func=func, rooms=rooms, device_room=device_room,
+                                         function1=function1, dop_addr=dop_addr)})
+
+
+
 
 
 

@@ -3,7 +3,6 @@
    {% for rooms in rooms %}
            <div id="draggable" class="room ui-draggable ui-draggable-handle ui-resizable" >
            <div class="room-name"><h2>{{ rooms.name }}</h2></div>
-
         {% for device_room in device_room %}
                 {% if device_room.id_room == rooms.id_room %}
                     {% for dop_addr in dop_addr %}
@@ -21,12 +20,12 @@
                                     {% if (function1.data == 0.0) and (func.val_max == 1 ) %}
                                         <div class="room-name"> <h3>{{ dop_addr.name_device }}</h3> </div>
                                               <div class="container pic">
-                                         <label><input name="{{ type_device.code }}" class="form-check-input checkbox" type="checkbox" value="{{ function1.data }}"  style="opacity:0"  it="shest02"   id="{{ function1.idfunction }}"> <span> <img src="/static{{dop_addr.img }} "width="50" height="50"  ></span></label>
+                                         <label><input name="{{ type_device.code }}" class="form-check-input checkbox" type="checkbox" value="{{ function1.data }}"  style="opacity:0"  it="shest02"   id="{{ function1.idfunction }}" dop="{{ function1.id_dop_addr }}"> <span> <img src="/static{{dop_addr.img }}" devname="{{ dop_addr.name_device }}" width="50" height="50"  ></span></label>
                                               </div>
                                     {% elif function1.data != 0.0 and (func.val_max == 1 )  %}
                                              <div class="room-name"> <h3>{{ dop_addr.name_device }}</h3> </div>
                                               <div class="container pic">
-                                     <label><input name="{{ type_device.code }}" class="form-check-input checkbox" type="checkbox" value="{{ function1.data }}"   checked=checked  style="opacity:0" it="shest02"   id="{{ function1.idfunction }}"> <span> <img src="/static{{dop_addr.img }} "width="50" height="50"  ></span></label>
+                                     <label><input name="{{ type_device.code }}" class="form-check-input checkbox" type="checkbox" value="{{ function1.data }}"   checked=checked  style="opacity:0" it="shest02"   id="{{ function1.idfunction }}" dop="{{ function1.id_dop_addr }}"> <span> <img src="/static{{dop_addr.img }}" devname="{{ dop_addr.name_device }}" width="50" height="50"  ></span></label>
                                               </div>
                                     {% endif %}
 
