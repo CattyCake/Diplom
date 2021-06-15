@@ -22,6 +22,7 @@ $(document).ready(function(){
   });
 
  });
+
  setInterval(function() {
     $.ajax({
    url: '/ajax',
@@ -40,7 +41,7 @@ $(document).ready(function(){
 
    }
   });
-}, 5000000000);
+}, 10000000000000);
 
 $(document).on("click",".but_search", function(e){
      $.ajax({
