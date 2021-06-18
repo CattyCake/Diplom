@@ -15,7 +15,6 @@ document.addEventListener('click', function(e) {
        var data = 1.0 || 'Перед нажатием на кнопку выделите checkbox!';
        var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
 
-
                $.ajax({
      url: '/ajaxcheckbox',
          type: 'post',
@@ -25,23 +24,19 @@ document.addEventListener('click', function(e) {
                  },
                 });
 
-
-
-
    }
    else if ( matches.call( e.target, '[it="shest02"]' ) )
    {
-        var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
-       var data = 0.0 || 'Перед нажатием на кнопку выделите checkbox!';
+       var id = $( e.target, '[it="shest02"]:checked' ).attr('id') || 'Перед нажатием на кнопку выделите checkbox!';
+       var data = "0" || 'Перед нажатием на кнопку выделите checkbox!';
        var dop_addr = $( e.target, '[it="shest02"]:checked' ).attr('dop') || 'Перед нажатием на кнопку выделите checkbox!';
-
 
                $.ajax({
      url: '/ajaxcheckbox',
          type: 'post',
                    data: {id:id, data:data, dop_addr:dop_addr},
            success: function(response){
-alert('Устройство ' + id + ' выключено');
+        alert('Устройство ' + id + ' выключено');
                  },
                 });
    }

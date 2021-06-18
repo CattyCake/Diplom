@@ -29,6 +29,7 @@
           var max  = $($this).attr('slider-max')
           var id = $(this).attr('id')
           var dop_addr = $(this).attr('dop')
+          var idfunc = $(this).attr('idfunc')
         // find any .slider-range element WITHIN scope of $this
         $(".slider-range", $this).slider({
             value: value/1,
@@ -56,9 +57,7 @@
            success: function(response){
 
                  },
-                });
-
-
+                })
 
             }
 
@@ -69,7 +68,7 @@
 
 
                                             <div><h3>{{ func.name }}</h3></div>
-                                                   <div class="slider" slider-min = "{{ func.val_min }}" slider-max="{{ func.val_max }}" value="{{ function1.data/1  }}" id="{{ function1.idfunction }}" dop ="{{ dop_addr.id_dop_addr }}">
+                                                   <div class="slider" idfunc = "{{ function1.idfunc }}" slider-min = "{{ func.val_min }}" slider-max="{{ func.val_max }}" value="{{ function1.data/1  }}" id="{{ function1.idfunction }}" dop ="{{ dop_addr.id_dop_addr }}">
                                                                       <b>{{function1.data/1}} <span style="color:green" id="result-polzunok"></span></b>
                                                                        <div class="slider-range"></div>
                                                                     </div>

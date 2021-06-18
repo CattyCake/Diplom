@@ -4,7 +4,7 @@ import cgi
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://sql4418114:8mtyhj4wCf@sql4.freesqldatabase.com:3306/sql4418114"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://u6J6EGP0Bo:bO4oY3mbs2@remotemysql.com:3306/u6J6EGP0Bo"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
